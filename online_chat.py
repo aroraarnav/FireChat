@@ -4,6 +4,7 @@ from threading import Thread
 from tkinter import simpledialog
 from tkinter import messagebox
 import pygame
+import keyboard
 
 SOUND_FILE = 'noti.wav'
 DATABASE = "YOUR PATH HERE"
@@ -18,6 +19,11 @@ firebase.put("Messages", "AUTOMATED", "This online chat was made by Arnav Arora.
 nameOfChatter = None
 root = Tk()
 root.title("Online Chat")
+
+def checkForEnter ():
+    while True:
+        if keyboard.is_pressed('enter'):
+            verifyMessage(entry.get())
 
 def changeName():
     global nameOfChatter
@@ -102,6 +108,7 @@ def askForName():
     else:
         nameOfChatter = dialog
 
+    Thread(target=checkForEnter).start()
     Thread(target=getMessages).start()
     start()
 
@@ -117,9 +124,8 @@ def getMessages ():
 
         try:
             messageList = list (result.items())
-        except Exception as e:
-            print (f"[EXCEPTION] {e}")
-            break
+        except Exception:
+            print (f"[EXCEPTION] Trying to reconnect...")
 
         if serverMessages != messageList:
             uniques = set(messageList) - set(serverMessages)
