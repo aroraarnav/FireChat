@@ -10,4 +10,4 @@ All the third party modules used in the project are availaible for use with the 
 ### Keyboard (for detecting 'Enter' or 'Return Key')
 `pip install keyboard`
 ## More Information
-The project UI is built with python-inbuilt library Tkinter. Threading module is also used to fetch messages from the datanase. This project was made by Arnav Arora - aroraarnav2005@gmail.com
+The project UI is built with python-inbuilt library Tkinter. Threading module is also used to fetch messages from the database. This project was made by Arnav Arora - aroraarnav2005@gmail.com
